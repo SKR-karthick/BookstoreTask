@@ -1,4 +1,4 @@
-# OTP + JWT Authentication API
+# Bookstore OTP + JWT Authentication API
 
 This project implements OTP-based authentication with JWT access/refresh tokens and book CRUD APIs using **Node.js**, **Express.js**, and **SQLite**.
 
