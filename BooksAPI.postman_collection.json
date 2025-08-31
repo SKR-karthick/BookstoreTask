@@ -1,0 +1,152 @@
+{
+  "info": {
+    "name": "Books API Collection",
+    "_postman_id": "12345-67890-abcdef",
+    "description": "Postman collection for OTP Auth and Books API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Request OTP",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"karthickraja@example.com\"\n}"
+            },
+            "url": { "raw": "http://localhost:5000/auth/request-otp", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["auth", "request-otp"] }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "pm.test(\"Should return success true\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.success).to.eql(true);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "Verify OTP",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"karthickraja@example.com\",\n  \"otp\": \"800379\"\n}"
+            },
+            "url": { "raw": "http://localhost:5000/auth/verify-otp", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["auth", "verify-otp"] }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "pm.test(\"Should contain accessToken and refreshToken\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property('accessToken');",
+                  "    pm.expect(jsonData).to.have.property('refreshToken');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "Refresh Token",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"refreshToken\": \"your_refresh_token_here\"\n}"
+            },
+            "url": { "raw": "http://localhost:5000/auth/refresh-token", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["auth", "refresh-token"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Books",
+      "item": [
+        {
+          "name": "Get All Books",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "http://localhost:5000/books?page=1&limit=5", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["books"], "query": [{ "key": "page", "value": "1" }, { "key": "limit", "value": "5" }] }
+          }
+        },
+        {
+          "name": "Get Book by ID",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "http://localhost:5000/books/15", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["books", "15"] }
+          }
+        },
+        {
+          "name": "Create Book",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{accessToken}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"The Shining\",\n  \"author\": \"Stephen King\",\n  \"published_year\": 1977,\n  \"price\": 13.99\n}"
+            },
+            "url": { "raw": "http://localhost:5000/books", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["books"] }
+          }
+        },
+        {
+          "name": "Update Book",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{accessToken}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"published_year\": 2000\n}"
+            },
+            "url": { "raw": "http://localhost:5000/books/5", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["books", "5"] }
+          }
+        },
+        {
+          "name": "Delete Book",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{accessToken}}" }
+            ],
+            "url": { "raw": "http://localhost:5000/books/3", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["books", "3"] }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "accessToken",
+      "value": ""
+    }
+  ]
+}

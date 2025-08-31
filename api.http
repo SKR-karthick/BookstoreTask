@@ -1,0 +1,58 @@
+### Request OTP
+POST http://localhost:5000/auth/request-otp
+Content-Type: application/json
+
+{
+  "email": "raja@example.com"
+}
+
+### Verify OTP
+POST http://localhost:5000/auth/verify-otp
+Content-Type: application/json
+
+{
+  "email": "raja@example.com",
+  "otp": "598080"
+}
+
+### Refresh Token
+POST http://localhost:5000/auth/refresh-token
+Content-Type: application/json
+
+{
+  "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIsImlhdCI6MTc1NjY2ODUzNiwiZXhwIjoxNzU3MjczMzM2fQ.QghKyq8ppnqWN_p36zCo1Pcnw1kfNavFDzBAWcgjZaA"
+}
+
+### Get All Books
+GET http://localhost:5000/books?page=1&limit=5
+
+### Get Book by ID
+GET http://localhost:5000/books/15
+
+### Create Book (requires authentication)
+POST http://localhost:5000/books
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIsImlhdCI6MTc1NjY2ODUzNiwiZXhwIjoxNzU2NjY5NDM2fQ.8NGpppVlM68yjWykDFryVSHYlqywLKjDkhWLgQi1MOE
+
+  {
+    "title": "The Shining",
+    "author": "Stephen King",
+    "published_year": 1977,
+    "price": 13.99
+  }
+
+### Update Book (requires authentication)
+PUT http://localhost:5000/books/5
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIsImlhdCI6MTc1NjY2OTU1OCwiZXhwIjoxNzU2NjcwNDU4fQ.nF2DGFfXL-N3DiFPik_DD3HKJLKIo-xXVRQPPpCXPEo
+
+{
+    "published_year": 2000
+}
+
+### Delete Book (requires authentication)
+DELETE http://localhost:5000/books/3
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNzU2NjU2MTE0LCJleHAiOjE3NTY2NTcwMTR9.t5clseHJNHK4wrMCNBLdwygoueAQjrrwrATzKTNHfNs
+
+# ###
+# POST http://localhost:5000/reset-db
