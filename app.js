@@ -33,7 +33,7 @@ app.listen(5000, () => console.log("Server running on port 5000"));
 //           console.error("Error creating books table:", err.message);
 //           return res.status(500).json({ error: "Failed to reset database" });
 //         }
-//         res.json({ message: "✅ Database reset successfully, IDs will now start from 1" });
+//         res.json({ message: "Database reset successfully, IDs will now start from 1" });
 //       });
 //     });
 //   });

@@ -20,7 +20,7 @@ exports.getBooks = (req, res) => {
   let sql = "SELECT * FROM books WHERE 1=1";
   let values = [];
 
-  // ✅ Filters
+  // Filters
   if (author) {
     sql += " AND author LIKE ?";
     values.push(`%${author}%`);
