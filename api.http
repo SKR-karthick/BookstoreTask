@@ -3,7 +3,7 @@ POST http://localhost:5000/auth/request-otp
 Content-Type: application/json
 
 {
-  "email": "raja@example.com"
+  "email": "my@example.com"
 }
 
 ### Verify OTP
@@ -11,8 +11,8 @@ POST http://localhost:5000/auth/verify-otp
 Content-Type: application/json
 
 {
-  "email": "raja@example.com",
-  "otp": "598080"
+  "email": "my@example.com",
+  "otp": "399397"
 }
 
 ### Refresh Token
@@ -20,7 +20,7 @@ POST http://localhost:5000/auth/refresh-token
 Content-Type: application/json
 
 {
-  "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIsImlhdCI6MTc1NjY2ODUzNiwiZXhwIjoxNzU3MjczMzM2fQ.QghKyq8ppnqWN_p36zCo1Pcnw1kfNavFDzBAWcgjZaA"
+  "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsImlhdCI6MTc1NjkwMzMxNCwiZXhwIjoxNzU3NTA4MTE0fQ._Y0-LDKX0DYNrOhE1AInBeH6qSg55fMUMXsgbeRfOiU"
 }
 
 ### Get All Books
@@ -32,10 +32,10 @@ GET http://localhost:5000/books/15
 ### Create Book (requires authentication)
 POST http://localhost:5000/books
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIsImlhdCI6MTc1NjY2ODUzNiwiZXhwIjoxNzU2NjY5NDM2fQ.8NGpppVlM68yjWykDFryVSHYlqywLKjDkhWLgQi1MOE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsImlhdCI6MTc1NjkwMzMxNCwiZXhwIjoxNzU2OTA0MjE0fQ.dyJ6PoipUM-C0yKu7LiKIqIEBEmekPCDZJeGK9B4VaQ
 
   {
-    "title": "The Shining",
+    "title": "Shining",
     "author": "Stephen King",
     "published_year": 1977,
     "price": 13.99
@@ -44,15 +44,16 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIsImlhdCI6M
 ### Update Book (requires authentication)
 PUT http://localhost:5000/books/5
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIsImlhdCI6MTc1NjY2OTU1OCwiZXhwIjoxNzU2NjcwNDU4fQ.nF2DGFfXL-N3DiFPik_DD3HKJLKIo-xXVRQPPpCXPEo
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsImlhdCI6MTc1NjkwMzMxNCwiZXhwIjoxNzU2OTA0MjE0fQ.dyJ6PoipUM-C0yKu7LiKIqIEBEmekPCDZJeGK9B4VaQ
 
 {
     "published_year": 2000
 }
 
 ### Delete Book (requires authentication)
-DELETE http://localhost:5000/books/3
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNzU2NjU2MTE0LCJleHAiOjE3NTY2NTcwMTR9.t5clseHJNHK4wrMCNBLdwygoueAQjrrwrATzKTNHfNs
+DELETE http://localhost:5000/books/15
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsImlhdCI6MTc1NjkwMzMxNCwiZXhwIjoxNzU2OTA0MjE0fQ.dyJ6PoipUM-C0yKu7LiKIqIEBEmekPCDZJeGK9B4VaQ
+
 
 # ###
 # POST http://localhost:5000/reset-db

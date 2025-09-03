@@ -30,10 +30,10 @@ db.run(
     }
 
     // If everything is okay → log the OTP in console
-    console.log(`📩 OTP for ${email || mobile}: ${otp}`);
+    console.log(`OTP for ${email || mobile}: ${otp}`);
 
     // Send response back to client
-    res.json({ message: "✅ OTP generated. Check console for details." });
+    res.json({ message: "OTP generated. Check console for details." });
   }
 );
 };
